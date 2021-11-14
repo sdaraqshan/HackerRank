@@ -1,0 +1,142 @@
+An array is a type of data structure that stores elements of the same type in a contiguous block of memory. In an array, , of size , each memory location has some unique index,  (where ), that can be referenced as  or .
+
+Reverse an array of integers.
+
+Note: If you've already solved our C++ domain's Arrays Introduction challenge, you may want to skip this.
+
+Example
+
+Return .
+
+Function Description
+
+Complete the function reverseArray in the editor below.
+
+reverseArray has the following parameter(s):
+
+int A[n]: the array to reverse
+Returns
+
+int[n]: the reversed array
+Input Format
+
+The first line contains an integer, , the number of integers in .
+The second line contains  space-separated integers that make up .
+
+Constraints
+
+Sample Input 1
+
+CopyDownload
+Array: arr
+4
+1 4 3 2
+Sample Output 1
+
+2 3 4 1
+
+--------------------------------------------------------------------------------
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+class Result {
+
+    /*
+     * Complete the 'reverseArray' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts INTEGER_ARRAY a as parameter.
+     */
+
+    public static List<Integer> reverseArray(List<Integer> a) {
+    // Write your code here
+    /*Array[] oa = a.toArray();
+    int n=oa.size();
+    for(int i=0;i<n/2;i++)
+    {
+        int temp=oa[i];
+        oa[i]=oa[n-i-1];
+        oa[n-i-1]=temp;
+    }
+    return oa;
+}*/
+    int n=a.size();
+    for(int i=0;i<n/2;i++){
+        int k= a.get(i);
+        a.set(i,a.get(n-i-1));
+        a.set(n-i-1,k);
+    }
+    return a;
+    }
+
+    /*void swap(int a[],int n)
+    {
+        int temp=a[i];
+        a[i]=a[n-i-1];
+        a[n-i-1]=temp;
+    }*/
+}
+    /**result_count = a_count;
+    int temp;
+    int end = a_count-1;
+    for(int i = 0; i < a_count/2; i++){
+        temp = *(a+end);
+        *(a+end) = *(a+i);
+        *(a+i) = temp;
+
+        end--;
+    }
+
+    return a;
+    
+    }*/
+    
+    /*vector<int> reverseArray(vector<int> a) {
+        int aux = 0;
+        int n = a.size();
+        for (int i = 0; i < n/2; ++i) {
+                aux = a[n-i-1];
+                a[n-i-1] = a[i];
+                a[i] = aux;
+        }
+        return a;
+}*/
+
+
+
+
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int arrCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<Integer> arr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+            .map(Integer::parseInt)
+            .collect(toList());
+
+        List<Integer> res = Result.reverseArray(arr);
+
+        bufferedWriter.write(
+            res.stream()
+                .map(Object::toString)
+                .collect(joining(" "))
+            + "\n"
+        );
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
